@@ -1,1 +1,12 @@
-
+@font-face { 
+    font-family:"Roboto-Bold.ttf" ;
+    src: url('C:\Users\ASUS\Desktop\Новая папка\fons') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face { 
+    font-family:"Roboto-Italic.ttf" ;
+    src: url('C:\Users\ASUS\Desktop\Новая папка\fons') format('truetype');
+    font-weight: italic;
+    font-style: normal;
+}
