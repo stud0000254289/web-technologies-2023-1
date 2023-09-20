@@ -45,7 +45,7 @@ textarea {
 
 /* Стиль кнопки Submit */
 .submit-button {
-    background: #5ad07f;
+    background: blue;
     box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
     border-radius: 10px;
     font-weight: 500;
