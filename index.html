@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>IT WEBSITE</title>
-   
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
     
     <header class="header">
-        <div class="form">
+        <div class="container">
             <div class="symbol">
                 <h1>IT WEBSITE</h1>
             </div>
@@ -22,70 +22,45 @@
                     <li><a href="#">Contacts</a></li>
                 </ul>
             </nav>
-            <table class="contacts">
-                <tr>
-                    <td class="phone-number">
-                        <img src="C:\Users\Абдраман Сидик\Desktop\nouveau\Phone.png" alt="">
-                    </td>
-                    <td>
-                        <p>+7 (111) 111 11 11</p>
-                    </td>
-                    <td>
-                        <p>+7 (111) 111 11 11</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="email">
-                        <img src="C:\Users\Абдраман Сидик\Desktop\nouveau\mail.png" alt="">
-                    </td>
-                    <td>
-                        <p>itcompany@mail.com</p>
-                    </td>
-                </tr>
-            </table>
-            
-            
+            <div class="contacts">
+                <div class="phone-number">
+                    <img src="C:\Users\Абдраман Сидик\Desktop\nouveau\Phone.png" alt="">
+                    <span>+7 (111) 111 11 11</span>
+                    <span>+7 (111) 111 11 11</span>
+                </div>
+                <div class="email">
+                    <img src="C:\Users\Абдраман Сидик\Desktop\nouveau\mail.png" alt="">
+                    <span>itcompany@mail.com</span>
+                </div>
+            </div>
         </div>
     </header>
 
     <main class="main">
         
-        <article class="development">
-            <div class="form">
+        <section class="about-us common-section">
+            <div class="container">
                 <div class="left-block">
                     <div class="title">
-                        <h2>Development of <strong>mobile applications</strong> and <strong>web services</strong> of any complexity</h2>
+                        <h2>Development of <span>mobile applications</span> and <span>web services</span> of any complexity</h2>
                         <p>We create mobile applications for iOS, Android that transfer your business to mobile applications of your customers' devices</p>
                     </div>
                     <div class="contact-form">
                         <h3>Leave your contacts and we will call you back within 30 minutes</h3>
-                        <table class="form-table">
-                            <tr>
-                                <td>
-                                    <label for="phone">Phone number</label>
-                                </td>
-                                <td>
-                                    <input type="phone" id="phone" value="+7 (111) 111 11 11">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="name">Full name</label>
-                                </td>
-                                <td>
-                                    <input type="text" id="name" value="Иван Иванов">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <button type="submit" >Get consultation</button>
-                                </td>
-                            </tr>
-                        </table>
+                        <form action="#" class="form">
+                            <div class="form-label">
+                                <label for="phone">Phone number</label>
+                                <input type="phone" id="phone" value="+7 (111) 111 11 11">
+                            </div>
+                            <div class="form-label">
+                                <label for="name">Full name</label>
+                                <input type="text" id="name" value="Иван Иванов">
+                            </div>
+                            <button type="submit" class="btn">Get<br> consultation</button>
+                        </form>
                     </div>
                 </div>
-                 
-                <div class="right-image">
+                <div class="right-block">
                     <div class="bg-images">
                         <img src="C:\Users\Абдраман Сидик\Desktop\nouveau\image-1.png" alt="">
                         <img src="C:\Users\Абдраман Сидик\Desktop\nouveau\image-2.png" alt="">
@@ -96,17 +71,13 @@
                     </div>
                 </div>
             </div>
-        </article>
-        <hr>
+        </section>
         
-        <article class="development-cycle common-section common-section--white">
-            <div class="form">
+        <section class="development-cycle common-section common-section--white">
+            <div class="container container--white">
                 <div class="title">
                     <h2>Full development cycle</h2>
                     <p>We use proven technologies</p>
-                    
-                </div>
-                <div class="Web_mobile">
                     <h3>Web</h3>
                     <p>PHP / Javascript / Node.JS / Web Socket / Socket.io / Vue.js/ Nuxt / MySQL / Laravel / GO lang / django / Python</p>
                     <h3>Mobile</h3>
@@ -124,11 +95,11 @@
                     </ul>
                 </div>
             </div>
-        </article>
+        </section>
         <hr>
 
-        <article class="developed-projects">
-            <div class="form">
+        <section class="developed-projects">
+            <div class="container">
                 <div class="title">
                     <h2>Developed more than 100 projects in 15 industries</h2>
                 </div>
@@ -136,7 +107,6 @@
                     <div class="col">
                         <ul>
                             <li>
-                                
                                 <img src="C:\Users\Абдраман Сидик\Desktop\nouveau\Social media.png" alt="">
                                 <strong>Social media</strong>
                             </li>
@@ -165,8 +135,8 @@
                                 <strong>Education</strong>
                             </li>
                             <li>
-                                <img src="C:\Users\Абдраман Сидик\Desktop\nouveau\Auto.png" alt="">
-                                <strong>Auto, transport</strong>
+                                <img src="src/assets/img/car_outline_24.svg" alt="">
+                                <span>Auto, transport</span>
                             </li>
                             <li>
                                 <img src="C:\Users\Абдраман Сидик\Desktop\nouveau\Medicine.png" alt="">
@@ -208,11 +178,11 @@
                     </div>
                 </div>
             </div>
-        </article>
+        </section>
         <hr>
 
-        <article class="proud-projects">
-            <div class="form">
+        <section class="proud-projects">
+            <div class="container">
                 <div class="title">
                     <h2>Projects we are proud of</h2>
                     <p>Our software development company is truly proud of the wonderful clients we have worked with. We enjoy a long-term partnership</p>
@@ -227,7 +197,7 @@
                         <li>BI Partners</li>
                         <li>Europharma</li>
                     </ul>
-                     <button type="submit" class="btn">View 100 more projects</button>
+                    <a href="#">View 100 more projects</a>
                 </div>
                 <div class="about-project">
                     <div class="title">
@@ -253,48 +223,32 @@
                         
                         <button type="submit" >GET IN ON Google Play</button>
                     </div>
-                    
                 </div>
             </div>
-        </article>
+        </section>
         <hr>
 
-        <article class="discuss-project">
-            <div class="form">
+        <section class="discuss-project">
+            <div class="container">
                 <div class="title">
                     <h2>Let's discuss Your project</h2>
                     <p>Let's figure out how to create an effective application, its cost and terms of its development</p>
                 </div>
-                <table class="contact">
-                    <tr>
-                        <td>
-                            <label for="phone">Best phone number</label>
-                        </td>
-                        <td>
-                            <input type="phone" id="phone">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="name">Full name</label>
-                        </td>
-                        <td>
-                            <input type="text" id="name">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <input type="submit" value="Discuss the project">
-                        </td>
-                    </tr>
-                </table>
-             
+                <div class="contact-form">
+                    <form action="#">
+                        <label for="phone">Best phone number</label>
+                        <input type="phone" id="phone">
+                        <label for="name">Full name</label>
+                        <input type="text" id="name">
+                        <input type="submit" value="Discuss the project">
+                    </form>
+                </div>
             </div>
-        </article>
+        </section>
         <hr>
 
-        <article class="development-stages">
-            <div class="form">
+        <section class="development-stages">
+            <div class="container">
                 <div class="title">
                     <h3>Application Development Stages</h3>
                 </div>
@@ -343,156 +297,119 @@
                     </div>
                 </div>
             </div>
-        </article>
+        </section>
         <hr>
-      
-           
-        </div>
-        <article class="Our team">
-            <div class="form">
+
+        <section class="team">
+            <div class="container">
                 <div class="title">
                     <h2>Our team</h2>
                     <p>Thousand is a full-cycle digital production company with its own product analytics, design, web and mobile development.</p>
                 </div>
                 <div class="statistics">
-                    <ul>
-                        <li><strong>28</strong> team members</li>
-                        <li><strong>+100</strong> projects</li>
-                        <li><strong>7 years</strong> in IT sphere</li>
-                    </ul>
+                    <span>28 team members</span>
+                    <span>+100 projects</span>
+                    <span>7 years in IT sphere</span>
                     <p>All the necessary specialists - from a designer to a tester - are on our staff. We hire the best specialists in the market. It's expensive but worth it</p>
                 </div>
                 <div class="video">
                     <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/team-video.png" alt="">
                 </div>
             </div>
-        </article>
+        </section>
         <hr>
 
-        
-        <article class="get-book">
-          
-            <div class="form">
+        <section class="get-book">
+            <div class="container">
                 <div class="title">
                     <h2>Get the book for free by leaving your contacts</h2>
                 </div>
-    
-                    <table class="form-table">
-                        <tr>
-                            <td>
-                                <label for="phone">Phone number</label>
-                            </td>
-                            <td>
-                                <input type="phone" id="phone" value="+7 (111) 111 11 11">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="name">Full name</label>
-                            </td>
-                            <td>
-                                <input type="text" id="name" >
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="name">Email</label>
-                            </td>
-                            <td>
-                                <input type="text" id="mail" value="mail@mail.com">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <button type="submit" class="btn">Send me ebook to my mail</button>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="image">
-                        <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/book.png" alt="">
-                    </div>
-        
+                <div class="contact-form">
+                    <form action="#">
+                        <label for="phone">Phone number</label>
+                        <input type="phone" id="phone">
+                        <input type="text" id="name" value="Your full name">
+                        <label for="email"></label>
+                        <input type="email" id="email">
+                        <input type="submit" value="Send me ebook to my mail">
+                    </form>
+                </div>
+                <div class="image">
+                    <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/book.png" alt="">
+                </div>
             </div>
-        </article>
+        </section>
         <hr>
 
-        
-        <article class="faq">
-            <ul class="faq-list">
-                <li>
+        <section class="faq">
+            <div class="container">
+                <div class="question">
                     <h3>What is the cost of a mobile application?</h3>
+                    <p></p>
+                </div>
+                <div class="question">
                     <h3>Do you provide a guarantee for the mobile application?</h3>
                     <p></p>
-                </li>
-        
-                <li>
+                </div>
+                <div class="question">
                     <h3>How long will development take?</h3>
                     <p>Development terms directly depend on the requirements for the mobile application, the characteristics of the company, as well as the wishes of the customer.
                         Average development time from start to finished application:
                         Medium projects up to 3 months.
                         Large projects about 4-6 months.
                         To get a more accurate estimate of the project completion time, it is necessary to determine the main task of the application, think over its logic and functionality.</p>
-                </li>
-        
-                <li>
+                </div>
+                <div class="question">
                     <h3>I will not tell my idea, do you guarantee confidentiality?</h3>
                     <p></p>
-                </li>
-            </ul>
-        </article>
-        
+                </div>
+            </div>
+        </section>
         <hr>
 
     </main>
-  
-    <footer class="footer ">
-        <div class="form">
-            <table>
-                <tr>
-                    <td class="logo">
-                        <h1>IT WEBSITE</h1>
-                    </td>
-                    <td class="info">
-                        <tr>
-                            <td>
-                                <div class="information">
-                                    <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/smartphone.png" alt="">
-                                    <span>Contact nums</span>
-                                </div>
-                                <span>+7 (778) 395 90 26</span>
-                            </td>
-                            <td>
-                                <div class="information">
-                                    <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/mail.png" alt="">
-                                    <span>Post</span>
-                                </div>
-                                <span>mail@mail.com</span>
-                            </td>
-                            <td>
-                                <div class="information">
-                                    <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/Address.png" alt="">
-                                    <span>Address</span>
-                                </div>
-                                <span>City city, street st. 90</span>
-                            </td>
-                            <td>
-                                <div class="information">
-                                    <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/img/document.png" alt="">
-                                    <span>Leave a request</span>
-                                </div>
-                                <span>Leave a request</span>
-                            </td>
-                        </tr>
-                    </td>
-                    <td class="world">
-                        <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/img/logo.png" alt="">
-                        <span>We work throughout world</span>
-                    </td>
-                </tr>
-            </table>
+    <footer class="footer common-section">
+        <div class="container">
+            <div class="logo">
+                <h1>IT WEBSITE</h1>
+            </div>
+            <div class="company-info">
+                <div class="number">
+                    <div class="top-info">
+                        <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/smartphone.png" alt="">
+                        <span>Contact nums</span>
+                    </div>
+                    <span>+7 (778) 395 90 26</span>
+                </div>
+                <div class="post">
+                    <div class="top-info">
+                        <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/mail.png" alt="">
+                        <span>Post</span>
+                    </div>
+                    <span>mail@mail.com</span>
+                </div>
+                <div class="address">
+                    <div class="top-info">
+                        <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/Address.png" alt="">
+                        <span>Address</span>
+                    </div>
+                    <span>City city, steet st. 90</span>
+                </div>
+                <div class="request">
+                    <div class="top-info">
+                        <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/img/document.png" alt="">
+                        <span>Leave a request</span>
+                    </div>
+                    <span>Leave a request</span>
+                </div>
+            </div>
+            <div class="world">
+                <img src="C:\Users\Абдраман Сидик\Desktop\nouveau/img/logo.png" alt="">
+                <span>We work throughout world</span>
+            </div>
         </div>
     </footer>
-    
+
+
 </body>
 </html>
-
