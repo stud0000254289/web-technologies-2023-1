@@ -1,89 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контакты</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contacts</title>
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
-   
-
-    <div class="breadcrumb">
-        <div class="breadcrumb-item">
-            <a href="/">раз)</a>
-        </div>
-        <div class="breadcrumb-item">
-            <a href="/категория1">два)</a>
-        </div>
-        <div class="breadcrumb-item">
-            <a href="/категория1/подкатегория">три)</a>
-        </div>
-        <div class="breadcrumb-item">
-            <a href="/категория1/подкатегория">четыре)</a>
-        </div>
-        
-    </div>
-    
-    <!-- Шапка сайта (скопирована с главной страницы) -->
     <header>
-        <div>
-            <img src="logo.png" alt="Логотип">
-        </div>
-        <nav>
+        <img src="fond.jpg" width="100" alt="logo">
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+        <div class="tab-wrapper">
             <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-            </ul>
-        </nav>
+                 <li>Раз</li>
+                 <li>Два</li>
+                 <li>Три</li>
+                 <li>Четыре</li>
+             </ul>
+         </div>
     </header>
-
-    <!-- Содержание страницы "Контакты" -->
-    <main>
-        <h2>Contact Us</h2>
-        <p class="paragraph-class">Просто свяжитесь с нами.</p>
-        <img src="contact-image.jpg" alt="Картинка контактов" width="350">
-        <h4>Address</h4>
-        <p class="paragraph-class">Город, Улица, Дом</p>
-        <h4>Phone</h4>
-        <ul>
-           <li>+7 (123) 456-7890</li>
-            <li>+7 (987) 654-3210</li>
-        </ul>
-        <h4>Online service</h4>
-        <ul>
-            <li><a href="http://example.com">example.com</a></li>
-            <li><a href="mailto:info@example.com">info@example.com</a></li>
-        </ul>
-        <h4>Send us message</h4>
-        <form action="#" method="post">
-            <p class="paragraph-class"> Full Name: <input type="text" name="full_name"></p>
-            <p class="paragraph-class">Email: <input type="email" name="email"></p>
-            <p class="paragraph-class">Message:</p>
-            <textarea name="message" rows="4" cols="50"></textarea>
-            
-            <button class="submit-button">
-                <div class="carton-symbol"> 
-                </div>
-                <span class="buttons-text">submit</span>
-            </button>
-        </form>
-        
-        
-    </main>
-
-    <!-- Подвал сайта (скопирован с главной страницы) -->
+    <h2 class="h2-class">Contact Us</h2>
+    <p class="paragraph-class">Просто свяжитесь с нами.</p>
+    
+    <h4 class="h4-class">Address</h4>
+    <p class="paragraph-class">Город, Улица, Дом</p>
+    <h4 class="h4-class">Phone</h4>
+    <ul>
+        <li>+79321231234</li>
+        <li>+79289879876</li>
+    </ul>
+    <h4 class="h4-class">Online service</h4>
+    <ul>
+        <li><a href="example@mail.ru">example.com</a></li>
+        <li><a href="info@example.com">info@example.com</a></li>
+    </ul>
+    <p class="paragraph-class">example@mail.com</p>
+    <p class="paragraph-class">+79321231234</p>
+    <h4 class="h4-class">Send us</h4>
+    <form action="index.html" class="form">
+        <input class="input-field" type="text" placeholder="Full Name">
+        <input class="input-field" type="email" placeholder="Email">
+        <textarea class="input-field" name="msg" cols="30" rows="10" placeholder="Message"></textarea>
+        <input class="btn-submit btn-new-style" type="submit" value="submit">
+    </form>
     <footer>
-        <h3>Контакты</h3>
+        <h3 class="h3-class">Контакты</h3>
         <p class="paragraph-class">Свяжитесь с нами:</p>
+        <hr>
         <ul>
             <li>Адрес: г. Ваш Город, ул. Улица, дом 123</li>
-            <li>Телефон: +7 (123) 456-7890</li>
-            <li>Email: info@example.com</li>
+            <li>+79321231234</li>
+            <li>info@example.com</li>
         </ul>
-        <p class="paragraph-class"> Все права защищены &copy; 2023</p>
+        <p class="paragraph-class">Все права защищены &copy; 2023</p>
     </footer>
+<script src="index.js"></script>
 </body>
 </html>
-
