@@ -1,3 +1,7 @@
+.footer{
+    position: relative;
+    z-index: 2;
+}
 .footer .container {
     padding: 0px 20px;
     display: flex;
@@ -17,6 +21,9 @@
     font-style: normal;
     font-weight: 700;
     line-height: 18px;
+    letter-spacing: -0.154px;
+    width: 217px;
+height: 24px;
 }
 
 .company-info {
@@ -34,6 +41,7 @@ font-style: normal;
 font-weight: 600;
 line-height: 22px;
 letter-spacing: -0.408px;
+
 }
 
 .number, .post, .address, .request {
@@ -82,3 +90,4 @@ letter-spacing: -0.154px;
     font-feature-settings: 'clig' off, 'liga' off;
     letter-spacing: -0.078px;
 }
+
