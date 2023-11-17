@@ -1,0 +1,93 @@
+.footer{
+    position: relative;
+    z-index: 2;
+}
+.footer .container {
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+  
+    box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.08), 0px 0px 2px 0px rgba(0, 0, 0, 0.08);
+    align-items: center;
+    gap: 40px;
+    background-color: #101828;
+}
+
+.footer h1 {
+    color: #FFF;
+    font-family: "Inter";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: -0.154px;
+    width: 217px;
+height: 24px;
+}
+
+.company-info {
+    display: flex;
+    align-self: flex-start;
+    gap: 120px;
+}
+
+.company-info span {
+color: var(--White, #FFF);
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: SF Pro Text;
+font-size: 17px;
+font-style: normal;
+font-weight: 600;
+line-height: 22px;
+letter-spacing: -0.408px;
+
+}
+
+.number, .post, .address, .request {
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+color: var(--gray-400, #98A2B3);
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: SF Pro Text;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 18px; 
+letter-spacing: -0.154px;
+}
+
+.top-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.top-info span {
+    color: #98A2B3;
+    font-family: "SF Pro Text";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+.world {
+    padding-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.world span {
+    color: var(--White, #FFF);
+    font-family: "SF Pro Text";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    font-feature-settings: 'clig' off, 'liga' off;
+    letter-spacing: -0.078px;
+}
+
