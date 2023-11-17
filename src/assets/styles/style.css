@@ -1,8 +1,9 @@
-@import "./global.css";
-@import "./fonts.css";
-@import "./utils.css";
+@import "global.css";
+@import "fonts.css";
+@import "utils.css";
 
 @import "header.css";
 @import "about-Us.css";
 @import "footer.css";
+
 
