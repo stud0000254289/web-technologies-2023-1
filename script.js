@@ -85,40 +85,58 @@ function init() {
         this.data = data;
 
         this.init = function () {
-            const parents = this.el.querySelectorAll('[data-parent]')
-
+            this.render();
+            const parents = this.el.querySelectorAll('[data-parent]');
             parents.forEach(parent => {
-                const open = parent.querySelector('[data-open]')
-
-                open.addEventListener('click', () => this.toggleItems(parent) )
-            })
-        }
+                const open = parent.querySelector('[data-open]');
+                open.addEventListener('click', () => this.toggleItems(parent));
+            });
+        };
 
         this.render = function () {
-            this.el.insertAdjacentHTML('beforeend', this.renderParent(this.data))
-        }
+            this.el.innerHTML = this.renderParent(this.data);
+        };
 
         this.renderParent = function (data) {
-            //проверка всех элементов на hasChildren
-            //если hasChildren, то запускаем renderParent
-            //если !hasChildren, то запускаем renderChildren
-            //возвращает рендер родительского элемента
+            let htmlContent = '';
+            if (data.hasChildren && data.items && data.items.length > 0) {
+                htmlContent += `<div class="list-item" data-parent>`;
+                htmlContent += `
+                    <div class="list-item__inner">
+                        <img class="list-item__arrow" src="chevron-down.png" alt="chevron-down" data-open>
+                        <img class="list-item__folder" src="folder.png" alt="folder">
+                        <span>${data.name}</span>
+                    </div>
+                    <div class="list-item__items">`;
 
-        }
+                data.items.forEach((child) => {
+                    htmlContent += this.renderParent(child);
+                });
+
+                htmlContent += `</div></div>`;
+            } else {
+                htmlContent += this.renderChildren(data);
+            }
+            return htmlContent;
+        };
 
         this.renderChildren = function (data) {
-            //вовзращает рендер элемента без вложенности
-        }
+            return `
+                <div class="list-item">
+                    <div class="list-item__inner">
+                        <img class="list-item__folder" src="folder.png" alt="folder">
+                        <span>${data.name}</span>
+                    </div>
+                </div>`;
+        };
 
         this.toggleItems = function (parent) {
-            parent.classList.toggle('list-item_open')
-        }
-
-/*        this.renderTest = function (data) {
-            return `
-            <div class="test">${data.name}</div>
-            `
-        }*/
-    }
+            const childrenContainer = parent.querySelector('.list-item__items');
+            if (childrenContainer) {
+                childrenContainer.style.display = childrenContainer.style.display === 'none' ? 'block' : 'none';
+                parent.classList.toggle('list-item_open');
+            }
+        };
+   }
 
 }
