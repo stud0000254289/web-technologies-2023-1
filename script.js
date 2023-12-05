@@ -103,7 +103,7 @@ function init() {
                 htmlContent += `<div class="list-item" data-parent>`;
                 htmlContent += `
                     <div class="list-item__inner">
-                        <img class="list-item__arrow" src="./chevron-down.png" alt="chevron-down" data-open>
+                        <img class="list-item__arrow" src=" ./chevron-down.png" alt="chevron-down" data-open>
                         <img class="list-item__folder" src="./folder.png" alt="folder">
                         <span>${data.name}</span>
                     </div>
