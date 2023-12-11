@@ -1,0 +1,125 @@
+.btn {
+    border-radius: 8px;
+    border: 0;
+    background:  #2D66EE;
+    padding: 10px 24px;
+    color: #FFF;
+    font-family: "SF Pro Text";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: left;
+}
+
+.form-label {
+    display: flex;
+    flex-direction: column;
+    padding-right: 24px;
+    gap: 10px;
+}
+
+.form-label label {
+    color: #667085;
+    font-family: "SF Pro Text";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; 
+}
+
+.form-label input {
+    border: 0;
+    border-bottom: 0.7px solid #D0D5DD;
+    color: #101828;
+    font-family: "SF Pro Text";
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    max-width: 220px;
+}
+    .about-us {
+    position: relative;
+    padding-top: 100px;
+}
+
+.about-us .container {
+    display: flex;
+    max-height: 780px;
+    gap: 40px;
+}
+
+.about-us .title {
+    max-width: 580px;
+}
+
+.contact-form {
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.16), 0px 0px 2px 0px rgba(0, 0, 0, 0.08);
+    max-width: 680px;
+    background-color: #FFF;
+    margin-top: 64px;
+}
+
+.contact-form h3 {
+    margin-top: 0;
+    margin-bottom: 32px;
+    max-width: 500px;
+    color:#101828;
+    font-family: "Inter";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+}
+
+
+.bg-images {
+  transform: rotate(-12deg);
+  overflow: hidden;
+  display: flex;
+  position: absolute;
+  left: 66%;
+  top: -600px;
+}
+.bg-images .right-col {
+  position: relative;
+  top: -1800px;
+  margin-left: -40px;
+  animation: moveTwo 8s infinite linear;
+}
+.bg-images .left-col {
+  animation: moveOne 8s infinite linear;
+}
+
+.left-img {
+  width: 450px;
+}
+
+.right-img {
+  width: 280px;
+}
+
+@keyframes moveOne {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, -48.5%);
+  }
+}
+@keyframes moveTwo {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 50%);
+  }
+}
