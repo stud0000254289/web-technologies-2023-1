@@ -2,96 +2,72 @@
 @import "./fonts.css";
 @import "./utils.css";
 
-.test {
-    color: yellow !important;
-}
-
-.test {
-    color: red !important;
-}
-
-.paragraph-class {
-    font-family:'WebFont', sans-serif ;
-    font-size: 16px;
-    line-height: 26px;
-    color: #1F3F68;
-    /* Другие стили для параграфа с этим классом */
-}
-h1 {
-    font-size: 64px;
-    color: #1F3F68;
-}
-.contact-h2 {
-    font-weight: 500;
-    font-size: 44px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  h1 {
+    color: #333;
     text-align: center;
-}
-h3 {
-    font-size: 36px;
-    text-align: center;
-}
-h4 {
-    font-size: 20px;
-    line-height: 30px;
-    color: #1F3F68;
-}
-input,
-textarea {
-    border: 1px solid #356EAD;
-    box-sizing: border-box;
-    border-radius: 10px;
-    opacity: 0.4;
-}
-
-/* Стиль кнопки Submit */
-.submit-button {
-    background: blue;
-    box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
-    border-radius: 10px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 26px;
-    text-align: center;
-    color: black;
-    text-transform: uppercase;
-}
-
-
-.submit-button .carton-symbol {
-    background: #f5f5f5; /* Цвет фона для символа */
-    padding: 5px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.submit-button .buttons-text {
-    flex: 1;
-}
-/*шапке сайта создать элемент хлебных крошек*/
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    background-color: rgba(135, 207, 235, 0.51);
-    padding: 10px;
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
-    border-left: black;
-    width: 20%;
-}
-
-.breadcrumb-item {
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-
-.breadcrumb-item a {
-    text-decoration: none;
-    color:rgba(0, 0, 0, 0.793);
-    margin-right: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
     font-weight: bold;
-}
-
-.breadcrumb-item a:hover {
-    text-decoration: underline;
-}
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color:rgb(63, 162, 162);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #result {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Form styles */
+  #pizza-form {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #pizza-form select,
+  #pizza-form input[type="checkbox"] {
+    margin-bottom: 10px;
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #pizza-form button {
+    width: 50%;
+  }
+  
+  #result h3 {
+    margin-top: 0;
+  }
+  
+  #result p {
+    margin-bottom: 5px;
+  }
