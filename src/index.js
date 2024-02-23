@@ -1,78 +1,81 @@
-function calculatePizza() {
-    const pizzaType = document.getElementById('pizza-type').value;
-    const pizzaSize = document.getElementById('pizza-size').value;
-    const mozzarella = document.getElementById('mozzarella').checked;
-    const cheeseCrust = document.getElementById('cheese-crust').checked;
-    const cheddarParmesan = document.getElementById('cheddar-parmesan').checked;
-
-    const pizza = new Pizza(pizzaType, pizzaSize);
-
-    if (mozzarella) {
-        pizza.addTopping('Сливочная моцарелла');
-    }
-    if (cheeseCrust) {
-        pizza.addTopping('Сырный борт');
-    }
-    if (cheddarParmesan) {
-        pizza.addTopping('Чедер и Пармезан');
-    }
-
-    const price = pizza.calculatePrice();
-    const calories = pizza.calculateCalories();
-
-    document.getElementById('price').innerText = `Цена: ${price} рублей`;
-    document.getElementById('calories').innerText = `Калорийность: ${calories} Ккал`;
-}
-
 class Pizza {
-    constructor(type, size) {
+    constructor(type) {
         this.type = type;
-        this.size = size;
+        this.size = 'small'; // По умолчанию размер маленький
         this.toppings = [];
+
+        // Цены и калории по умолчанию для типов пицц
         this.prices = {
-            'Маленькая': 100,
-            'Большая': 200,
-            'Сливочная моцарелла': 50,
-            'Сырный борт': this.size === 'Маленькая' ? 150 : 300,
-            'Чедер и Пармезан': this.size === 'Маленькая' ? 150 : 300
-        };
-        this.calories = {
-            'Маленькая': 100,
-            'Большая': 200,
-            'Сливочная моцарелла': 20,
-            'Сырный борт': 50,
-            'Чедер и Пармезан': 50
-        };
-        this.basePrice = {
             'Маргарита': 500,
             'Пепперони': 800,
             'Баварская': 700
         };
-        this.baseCalories = {
+        this.calories = {
             'Маргарита': 300,
             'Пепперони': 400,
             'Баварская': 450
         };
+
+        // Цены и калории для добавок и размеров
+        this.additions = {
+            'смалл': { price: 100, calories: 100 },
+            'большой': { price: 200, calories: 200 },
+            'сливочная моцарелла': { price: 50, calories: 20 },
+            'сырный борт': { price: 150, calories: 50, big: { price: 300, calories: 50 } },
+            'чедер и пармезан': { price: 150, calories: 50, big: { price: 300, calories: 50 } }
+        };
+    }
+
+    setSize(size) {
+        this.size = size;
     }
 
     addTopping(topping) {
-        this.toppings.push(topping);
+        if (!this.toppings.includes(topping)) {
+            this.toppings.push(topping);
+        }
+    }
+
+    removeTopping(topping) {
+        this.toppings = this.toppings.filter(t => t !== topping);
+    }
+
+    getToppings() {
+        return this.toppings;
+    }
+
+    getSize() {
+        return this.size;
+    }
+
+    getType() {
+        return this.type;
     }
 
     calculatePrice() {
-        let price = this.basePrice[this.type] + this.prices[this.size];
-        for (const topping of this.toppings) {
-            price += this.prices[topping];
-        }
+        let price = this.prices[this.type] + this.additions[this.size].price;
+        this.toppings.forEach(topping => {
+            const addition = this.additions[topping];
+            price += this.size === 'большой' && addition.big ? addition.big.price : addition.price;
+        });
         return price;
     }
 
     calculateCalories() {
-        let calories = this.baseCalories[this.type] + this.calories[this.size];
-        for (const topping of this.toppings) {
-            calories += this.calories[topping];
-        }
+        let calories = this.calories[this.type] + this.additions[this.size].calories;
+        this.toppings.forEach(topping => {
+            const addition = this.additions[topping];
+            calories += this.size === 'большой' && addition.big ? addition.big.calories : addition.calories;
+        });
         return calories;
     }
 }
+
+// Пример использования
+let myPizza = new Pizza('Маргарита');
+myPizza.setSize('большой');
+myPizza.addTopping('сливочная моцарелла');
+myPizza.addTopping('сырный борт');
+console.log(`Стоимость: ${myPizza.calculatePrice()} руб.`);
+console.log(`Калорийность: ${myPizza.calculateCalories()} Ккал.`);
 
