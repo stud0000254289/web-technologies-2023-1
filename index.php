@@ -2,17 +2,17 @@
 // Установка часового пояса для корректной работы с временем
 date_default_timezone_set('Europe/Moscow');
 
-// Переменные для использования в HTML
+
 $title = "Добро пожаловать на наш сайт";
 $heading = "Главная страница";
 $currentYear = date('Y');
 
-// Функция для вывода текущего времени с правильными склонениями
+
 function formatTime() {
     $hours = date('G');
     $minutes = date('i');
 
-    // Определение правильной формы слова "час"
+   
     if ($hours == 1 || $hours == 21) {
         $hoursSuffix = 'час';
     } elseif (in_array($hours, [2, 3, 4, 22, 23, 24])) {
@@ -21,7 +21,7 @@ function formatTime() {
         $hoursSuffix = 'часов';
     }
 
-    // Определение правильной формы слова "минута"
+   
     $minutesLastDigit = $minutes % 10;
     if ($minutesLastDigit == 1 && $minutes != 11) {
         $minutesSuffix = 'минута';
