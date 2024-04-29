@@ -1,3 +1,4 @@
+
 <?php
 logRequest();
 
@@ -49,17 +50,17 @@ function buildGallery($dir) {
     <title>Фотогалерея</title>
     <style>
         .gallery img {
-            width: 100px; 
+            width: 100px; /* Уменьшенный вид картинок */
             margin: 10px;
         }
-        
+       
     </style>
 </head>
 <body>
     <div class="gallery">
         <?php
-        
-        echo buildGallery('images/'); 
+        // Вызов функции buildGallery для отображения галереи изображений
+        echo buildGallery('images/'); // Предполагается, что изображения находятся в папке images/
         ?>
     </div>
     <!-- Форма загрузки нового изображения -->
