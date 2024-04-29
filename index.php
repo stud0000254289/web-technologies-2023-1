@@ -32,16 +32,26 @@ function logRequest() {
 
 function buildGallery($dir) {
     $html = '';
-    if ($handle = opendir($dir)) {
-        while (false !== ($entry = readdir($handle))) {
-            if ($entry != "." && $entry != "..") {
-                $html .= '<a href="'.$dir.$entry.'" target="_blank"><img src="'.$dir.$entry.'" alt="'.$entry.'"></a>';
+    // Check if the directory exists
+    if (is_dir($dir)) {
+        if ($handle = opendir($dir)) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != "..") {
+                    $html .= '<a href="'.$dir.$entry.'" target="_blank"><img src="'.$dir.$entry.'" alt="'.$entry.'"></a>';
+                }
             }
+            closedir($handle);
+        } else {
+            // Handle case where directory cannot be opened
+            $html = 'Failed to open directory: ' . $dir;
         }
-        closedir($handle);
+    } else {
+        // Handle case where directory does not exist
+        $html = 'Directory not found: ' . $dir;
     }
     return $html;
 }
+
 ?>
 
 <!DOCTYPE html>
