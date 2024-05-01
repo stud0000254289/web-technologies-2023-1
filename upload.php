@@ -20,7 +20,7 @@ if($check !== false) {
            
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
                
-                createThumbnail($targetFile, $targetDir . 'thumbs/' . basename($_FILES["fileToUpload"]["name"]), 100);
+                createThumbnail($targetFile, $targetDir . basename($_FILES["fileToUpload"]["name"]), 100);
                 echo "Файл ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " был загружен.";
             } else {
                 echo "Произошла ошибка при загрузке файла.";
