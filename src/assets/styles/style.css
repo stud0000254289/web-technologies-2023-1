@@ -1,11 +1,109 @@
-@import "./global.css";
-@import "./fonts.css";
-@import "./utils.css";
-
-.test {
-    color: yellow !important;
+body {
+    margin: 50px auto;
 }
 
-.test {
-    color: red !important;
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
+}
+
+.all {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+
+.button {
+    align-self: flex-end;
+    margin-right: 17%;
+    cursor: pointer;
+}
+
+.pizzas{
+    display: flex;
+    gap: 20px;
+    padding-top: 50px;
+    cursor: pointer;
+}
+
+.pizza-card {
+    border: 2px solid #fff;
+    padding: 5px;
+}
+
+.pizza-card--active {
+    border: 2px solid darkorange;
+    border-radius: 15px;
+}
+
+.pizza-card p {
+    font-weight: 700;
+    text-align: center;
+}
+
+.pizza-card img {
+    width: 180px;
+}
+
+.sizes {
+    display: flex;
+    background-color: gainsboro;
+    justify-content: space-around;
+    border-radius: 15px;
+    padding: 2px;
+    gap: 2px;
+    cursor: pointer;
+}
+
+.size {
+    background-color: gainsboro;
+    padding: 4px 50px;
+    border-radius: 15px;
+}
+
+.size--active {
+    background-color: #fff;
+}
+
+.topping-cards {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.topping-card {
+    border: 2px solid #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, 
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 15px;
+    padding: 5px 8px;
+}
+
+.topping-card--active {
+    border: 2px solid darkorange;
+}
+
+.topping-card img {
+    width: 90px;
+}
+
+.topping-card p {
+    text-align: center;
+    width: 80px;
+    text-wrap: wrap;
+}
+
+.price {
+    text-align: center;
+    font-weight: 700;
+}
+
+.order {
+    width: 180px;
+    background-color: darkorange;
+    padding: 20px 80px;
+    border-radius: 35px;
+    text-align: center;
+    color: #fff;
 }

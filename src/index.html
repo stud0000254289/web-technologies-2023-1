@@ -1,18 +1,61 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="/src/assets/styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <title>Pizza Calculator</title>
 </head>
 <body>
-<div class="test" style="color: blue">
-    test
-</div>
-
-<script src="index.js"></script>
+    <main>
+        <div class="all">
+            <div class="pizzas">
+                <div class="pizza-card pizza-card--active" data-type="Пепперони" onclick="selectPizzaType(this)">
+                    <img src="../images/peperoni.png" alt="Пепперони">
+                    <p>Пепперони</p>
+                </div>
+                <div class="pizza-card" data-type="Маргарита" onclick="selectPizzaType(this)">
+                    <img src="../images/margarita.png" alt="Маргарита">
+                    <p>Маргарита</p>
+                </div>
+                <div class="pizza-card" data-type="Баварская" onclick="selectPizzaType(this)">
+                    <img src="../images/bavarskaya.png" alt="Баварская">
+                    <p>Баварская</p>
+                </div>
+            </div>
+            <div class="params">
+                <h2>Выберите размер</h2>
+                <div class="sizes">
+                    <div class="size size--active" data-size="смалл" onclick="selectSize(this)">Маленькая</div>
+                    <div class="size" data-size="большой" onclick="selectSize(this)">Большая</div>
+                </div>
+                <h3>Добавить по вкусу</h3>
+                <div class="topping-cards">
+                    <div class="topping-card" data-topping="сырный борт" onclick="toggleTopping(this)">
+                        <img src="../images/cheese.png" alt="Сырный бортик">
+                        <p>Сырный бортик</p>
+                        <p class="price">150 ₽</p>
+                    </div>
+                    <div class="topping-card" data-topping="сливочная моцарелла" onclick="toggleTopping(this)">
+                        <img src="../images/slivaya_mozarella.png" alt="Сливочная моцарелла">
+                        <p>Сливочная моцарелла</p>
+                        <p class="price">50 ₽</p>
+                    </div>
+                    <div class="topping-card" data-topping="чедер и пармезан" onclick="toggleTopping(this)">
+                        <img src="../images/chred.png" alt="Чеддер и пармезан">
+                        <p>Чеддер и пармезан</p>
+                        <p class="price">150 ₽</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button">
+            <div class="order" onclick="addToCart()">
+                Добавить в корзину за <span class="result">900 ₽ (500 кКал)</span>
+            </div>
+        </div>
+    </main>
+    <script src="index.js"></script>
 </body>
 </html>
+
