@@ -1,7 +1,7 @@
 class Pizza {
     constructor(type) {
         this.type = type;
-        this.size = 'small'; // По умолчанию размер маленький
+        this.size = 'маленькая'; // По умолчанию размер маленький
         this.toppings = [];
 
         // Цены и калории по умолчанию для типов пицц
@@ -16,10 +16,14 @@ class Pizza {
             'Баварская': 450
         };
 
-        // Цены и калории для добавок и размеров
+        // Цены и калории для размеров
+        this.sizes = {
+            'маленькая': { price: 100, calories: 100 },
+            'большой': { price: 200, calories: 200 }
+        };
+
+        // Цены и калории для добавок
         this.additions = {
-            'смалл': { price: 100, calories: 100 },
-            'большой': { price: 200, calories: 200 },
             'сливочная моцарелла': { price: 50, calories: 20 },
             'сырный борт': { price: 150, calories: 50, big: { price: 300, calories: 50 } },
             'чедер и пармезан': { price: 150, calories: 50, big: { price: 300, calories: 50 } }
@@ -27,7 +31,9 @@ class Pizza {
     }
 
     setSize(size) {
-        this.size = size;
+        if (this.sizes[size]) {
+            this.size = size;
+        }
     }
 
     addTopping(topping) {
@@ -53,7 +59,7 @@ class Pizza {
     }
 
     calculatePrice() {
-        let price = this.prices[this.type] + this.additions[this.size].price;
+        let price = this.prices[this.type] + this.sizes[this.size].price;
         this.toppings.forEach(topping => {
             const addition = this.additions[topping];
             price += this.size === 'большой' && addition.big ? addition.big.price : addition.price;
@@ -62,7 +68,7 @@ class Pizza {
     }
 
     calculateCalories() {
-        let calories = this.calories[this.type] + this.additions[this.size].calories;
+        let calories = this.calories[this.type] + this.sizes[this.size].calories;
         this.toppings.forEach(topping => {
             const addition = this.additions[topping];
             calories += this.size === 'большой' && addition.big ? addition.big.calories : addition.calories;
@@ -78,4 +84,5 @@ myPizza.addTopping('сливочная моцарелла');
 myPizza.addTopping('сырный борт');
 console.log(`Стоимость: ${myPizza.calculatePrice()} руб.`);
 console.log(`Калорийность: ${myPizza.calculateCalories()} Ккал.`);
+
 
