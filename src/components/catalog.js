@@ -32,7 +32,7 @@ export class Catalog {
 
             if (page !== this.#page) {
                 this.setPage(page);
-                this.loadItems()
+                this.loadItems();
             }
         }
 
@@ -43,14 +43,14 @@ export class Catalog {
                 return;
             }
 
-            const page = +item.dataset.catalogPaginationPage
+            const page = +item.dataset.catalogPaginationPage;
 
             this.setPage(page);
             this.pushState();
-            this.loadItems()
-        })
+            this.loadItems();
+        });
 
-        this.loadItems()
+        this.loadItems();
     }
 
     getPage () {
@@ -61,43 +61,41 @@ export class Catalog {
     }
 
     setPage (page) {
-        this.#page = page
+        this.#page = page;
     }
 
     pushState () {
         const url = new URL(window.location.href);
         url.searchParams.set('page', this.#page);
 
-        window.history.pushState({}, '', url)
+        window.history.pushState({}, '', url);
     }
 
-    loadItems () {
+    async loadItems () {
         try {
-            this.#getItems({ limit: this.limit, page: this.#page })
-                .then(({ items, total }) => {
-                    this.#total = total
-                    this.renderItems(items)
-                    this.renderPagination()
-        })
+            const { items, total } = await this.#getItems({ limit: this.limit, page: this.#page });
+            this.#total = total;
+            this.renderItems(items);
+            this.renderPagination();
         } catch (error) {
-            console.log(error);
+            console.error('Error loading items:', error);
+            this.#itemsEl.innerHTML = '<p>Failed to load items. Please try again later.</p>';
         }
     }
 
     renderItems (items) {
-        this.#itemsEl.innerHTML = items.map(this.#renderItem).join('')
+        this.#itemsEl.innerHTML = items.map(this.#renderItem).join('');
     }
 
     renderPagination () {
-        let html = ''
+        let html = '';
 
         for (let index = 0; index < this.pageCount; index++) {
             const page = index + 1;
-
-            const classes = ['catalog__pagination-item']
+            const classes = ['catalog__pagination-item'];
 
             if (page === this.#page) {
-                classes.push('catalog__pagination-item_active')
+                classes.push('catalog__pagination-item_active');
             }
 
             html += `
@@ -107,9 +105,9 @@ export class Catalog {
                 >
                     ${page}
                 </button>
-            `
+            `;
         }
 
-        this.#paginationEl.innerHTML = html
+        this.#paginationEl.innerHTML = html;
     }
 }
