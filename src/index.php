@@ -1,5 +1,5 @@
 <?php
-include './db/ConnectDB.php';
+include '../db/ConnectDB.php';
 
 function fetchMenuItems($parent_id = NULL) {
     global $conn;
@@ -18,6 +18,36 @@ function fetchMenuItems($parent_id = NULL) {
 
 $menuItems = fetchMenuItems();
 $conn->close();
+
+function renderMenu($items) {
+    foreach ($items as $item) {
+        if (!empty($item['items'])) {
+            echo <<<HTML
+            <div class="list-item" data-parent>
+                <div class="list-item__inner">
+                    <img class="list-item__arrow" src="img/chevron-down.png" alt="chevron-down" data-open>
+                    <img class="list-item__folder" src="img/folder.png" alt="folder">
+                    <span>{$item['name']}</span>
+                </div>
+                <div class="list-item__items">
+HTML;
+            renderMenu($item['items']);
+            echo <<<HTML
+                </div>
+            </div>
+HTML;
+        } else {
+            echo <<<HTML
+            <div class="list-item">
+                <div class="list-item__inner">
+                    <img class="list-item__folder" src="img/folder.png" alt="folder">
+                    <span>{$item['name']}</span>
+                </div>
+            </div>
+HTML;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,35 +55,11 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <title>Menu</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="list-items" id="list-items">
-        <?php
-        function renderMenu($items) {
-            foreach ($items as $item) {
-                if ($item['has_children']) {
-                    echo '<div class="list-item" data-parent>';
-                    echo '<div class="list-item__inner">';
-                    echo '<img class="list-item__arrow" src="/img/chevron-down.png" alt="chevron-down" data-open>';
-                    echo '<img class="list-item__folder" src="/img/folder.png" alt="folder">';
-                    echo '<span>' . $item['name'] . '</span>';
-                    echo '</div>';
-                    echo '<div class="list-item__items">';
-                    renderMenu($item['items']);
-                    echo '</div></div>';
-                } else {
-                    echo '<div class="list-item">';
-                    echo '<div class="list-item__inner">';
-                    echo '<img class="list-item__folder" src="/img/folder.png" alt="folder">';
-                    echo '<span>' . $item['name'] . '</span>';
-                    echo '</div></div>';
-                }
-            }
-        }
-
-        renderMenu($menuItems);
-        ?>
+        <?php renderMenu($menuItems); ?>
     </div>
     <script type="module" src="script.js"></script>
 </body>
