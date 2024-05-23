@@ -94,3 +94,4 @@ function createThumbnail($src, $dest, $desiredWidth) {
     }
     return true;
 }
+?>

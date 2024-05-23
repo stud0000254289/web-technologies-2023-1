@@ -1,5 +1,3 @@
-
-?>
 <?php
 logRequest();
 
@@ -24,7 +22,8 @@ function logRequest() {
         usort($lastLogFile, function($a, $b) {
             return filemtime($a) - filemtime($b);
         });
-        $lastLogNumber = count($lastLogFile) ? (int)filter_var(basename(end($lastLogFile)), FILTER_SANITIZE_NUMBER_INT) + 1 : 0;
+
+        $lastLogNumber = count($lastLogFile) ? (int)filter_var(basename(end($lastLogFile)), FILTER_SANITIZE_NUMBER_INT) + 1 : 1;
         rename($logFile, $logDir . "log" . $lastLogNumber . ".txt");
     }
 }
