@@ -4,6 +4,7 @@ $targetDir = "images/";
 $thumbsDir = $targetDir . "thumbs/";
 $targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
 $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+$errorMessages = [];
 
 // Убедимся, что папка для миниатюр существует
 if (!file_exists($thumbsDir)) {
@@ -15,27 +16,35 @@ $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 if ($check !== false) {
     // Проверка размера файла
     if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Файл слишком большой.";
+        $errorMessages[] = "Файл слишком большой.";
     } else {
         // Проверка формата файла
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-            echo "Только JPG, JPEG, PNG & GIF файлы разрешены.";
+            $errorMessages[] = "Только JPG, JPEG, PNG & GIF файлы разрешены.";
         } else {
             // Попытка загрузить файл
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
                 // Создание миниатюры
                 createThumbnail($targetFile, $thumbsDir . basename($_FILES["fileToUpload"]["name"]), 100);
-                echo "Файл ". htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " был загружен.";
+                echo "Файл " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " был загружен.";
             } else {
-                echo "Произошла ошибка при загрузке файла.";
+                $errorMessages[] = "Произошла ошибка при загрузке файла.";
             }
         }
     }
 } else {
-    echo "Файл не является изображением.";
+    $errorMessages[] = "Файл не является изображением.";
 }
 
-header('Location: index.php');
+if (!empty($errorMessages)) {
+    foreach ($errorMessages as $message) {
+        echo $message . "<br>";
+    }
+    exit();
+} else {
+    header('Location: index.php');
+    exit();
+}
 
 // Функция создания миниатюры
 function createThumbnail($src, $dest, $desiredWidth) {
@@ -85,4 +94,3 @@ function createThumbnail($src, $dest, $desiredWidth) {
     }
     return true;
 }
-

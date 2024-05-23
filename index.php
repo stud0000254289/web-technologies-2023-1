@@ -1,13 +1,15 @@
+
+?>
 <?php
 logRequest();
 
 function logRequest() {
-    $logDir = "logs/";
-    $logFile = $logDir . "log.txt";
+    $logDir = "logs/"; 
+    $logFile = $logDir . "log.txt"; 
 
     // Убедимся, что папка для логов существует
     if (!file_exists($logDir)) {
-        mkdir($logDir, 0777, true);
+        mkdir($logDir, 0777, true); 
     }
 
     // Чтение и запись в файл лога
@@ -18,12 +20,11 @@ function logRequest() {
     // Проверка количества записей в log.txt
     $lines = file($logFile);
     if (count($lines) > 10) {
-        // Поиск последнего файла лога
         $lastLogFile = glob($logDir . "log*.txt");
         usort($lastLogFile, function($a, $b) {
-            return filemtime($b) - filemtime($a);
+            return filemtime($a) - filemtime($b);
         });
-        $lastLogNumber = count($lastLogFile) ? (int)filter_var(basename($lastLogFile[0]), FILTER_SANITIZE_NUMBER_INT) + 1 : 0;
+        $lastLogNumber = count($lastLogFile) ? (int)filter_var(basename(end($lastLogFile)), FILTER_SANITIZE_NUMBER_INT) + 1 : 0;
         rename($logFile, $logDir . "log" . $lastLogNumber . ".txt");
     }
 }
@@ -54,7 +55,7 @@ function buildGallery($dir) {
     <title>Фотогалерея</title>
     <style>
         .gallery img {
-            width: 100px;
+            width: 100px; 
             margin: 10px;
         }
     </style>
@@ -62,7 +63,7 @@ function buildGallery($dir) {
 <body>
     <div class="gallery">
         <?php
-        echo buildGallery('images/');
+        echo buildGallery('images/'); 
         ?>
     </div>
     <form action="upload.php" method="post" enctype="multipart/form-data">
@@ -72,4 +73,3 @@ function buildGallery($dir) {
     </form>
 </body>
 </html>
-
