@@ -1,97 +1,67 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $uploadDir = 'images/';
+    $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+    $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES['image']['tmp_name']);
 
-$targetDir = "images/";
-$thumbsDir = $targetDir . "thumbs/";
-$targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
-$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-$errorMessages = [];
+    if ($check === false) {
+        die("Файл не является изображением.");
+    }
 
-// Убедимся, что папка для миниатюр существует
-if (!file_exists($thumbsDir)) {
-    mkdir($thumbsDir, 0777, true);
-}
+    if ($_FILES['image']['size'] > 2000000) {
+        die("Файл слишком большой.");
+    }
 
-// Проверка, является ли файл изображением
-$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-if ($check !== false) {
-    // Проверка размера файла
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        $errorMessages[] = "Файл слишком большой.";
-    } else {
-        // Проверка формата файла
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-            $errorMessages[] = "Только JPG, JPEG, PNG & GIF файлы разрешены.";
-        } else {
-            // Попытка загрузить файл
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
-                // Создание миниатюры
-                createThumbnail($targetFile, $thumbsDir . basename($_FILES["fileToUpload"]["name"]), 100);
-                echo "Файл " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " был загружен.";
-            } else {
-                $errorMessages[] = "Произошла ошибка при загрузке файла.";
-            }
+    $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+    if (!in_array($imageFileType, $allowedTypes)) {
+        die("Разрешены только файлы JPG, JPEG, PNG и GIF.");
+    }
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+        $thumbnailWidth = 150;
+        list($width, $height) = getimagesize($uploadFile);
+        $thumbHeight = ($height / $width) * $thumbnailWidth;
+        $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbHeight);
+
+        switch ($imageFileType) {
+            case 'jpg':
+            case 'jpeg':
+                $source = imagecreatefromjpeg($uploadFile);
+                break;
+            case 'png':
+                $source = imagecreatefrompng($uploadFile);
+                break;
+            case 'gif':
+                $source = imagecreatefromgif($uploadFile);
+                break;
         }
-    }
-} else {
-    $errorMessages[] = "Файл не является изображением.";
-}
 
-if (!empty($errorMessages)) {
-    foreach ($errorMessages as $message) {
-        echo $message . "<br>";
-    }
-    exit();
-} else {
-    header('Location: index.php');
-    exit();
-}
+        imagecopyresampled($thumbnail, $source, 0, 0, 0, 0, $thumbnailWidth, $thumbHeight, $width, $height);
 
-// Функция создания миниатюры
-function createThumbnail($src, $dest, $desiredWidth) {
-    $info = getimagesize($src);
-    switch ($info['mime']) {
-        case 'image/jpeg':
-            $sourceImage = imagecreatefromjpeg($src);
-            break;
-        case 'image/png':
-            $sourceImage = imagecreatefrompng($src);
-            break;
-        case 'image/gif':
-            $sourceImage = imagecreatefromgif($src);
-            break;
-        default:
-            echo "Unsupported image type!";
-            return false;
-    }
+        $thumbnailFile = $uploadDir . 'thumb_' . basename($_FILES['image']['name']);
+        switch ($imageFileType) {
+            case 'jpg':
+            case 'jpeg':
+                imagejpeg($thumbnail, $thumbnailFile);
+                break;
+            case 'png':
+                imagepng($thumbnail, $thumbnailFile);
+                break;
+            case 'gif':
+                imagegif($thumbnail, $thumbnailFile);
+                break;
+        }
 
-    if (!$sourceImage) {
-        echo "Failed to create image from file.";
-        return false;
-    }
+        imagedestroy($thumbnail);
+        imagedestroy($source);
 
-    $width = imagesx($sourceImage);
-    $height = imagesy($sourceImage);
-    $desiredHeight = floor($height * ($desiredWidth / $width));
-    $virtualImage = imagecreatetruecolor($desiredWidth, $desiredHeight);
-
-    if ($info['mime'] == 'image/png') {
-        imagecolortransparent($virtualImage, imagecolorallocatealpha($virtualImage, 0, 0, 0, 127));
-        imagealphablending($virtualImage, false);
-        imagesavealpha($virtualImage, true);
+        header('Location: index.php');
+    } else {
+        die("Ошибка загрузки файла.");
     }
-
-    imagecopyresampled($virtualImage, $sourceImage, 0, 0, 0, 0, $desiredWidth, $desiredHeight, $width, $height);
-    switch ($info['mime']) {
-        case 'image/jpeg':
-            imagejpeg($virtualImage, $dest);
-            break;
-        case 'image/png':
-            imagepng($virtualImage, $dest);
-            break;
-        case 'image/gif':
-            imagegif($virtualImage, $dest);
-            break;
-    }
-    return true;
 }
 ?>
+
+
+
