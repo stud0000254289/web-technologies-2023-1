@@ -21,7 +21,6 @@ const api = async (url, options = {}) => {
     ])
 
     const response = result[1]
-
     return await response.json()
 }
 

@@ -30,10 +30,8 @@ class Form {
 
     findFields() {
         const fields = []
-
         Object.keys(this.rules).forEach(name => {
             const input = this.el.querySelector(`input[name=${name}]`)
-
             fields.push({
                 input,
                 name,
@@ -47,7 +45,6 @@ class Form {
     validateFields() {
         let isValid = true;
         const values = {}
-
         this.fields.forEach(field => {
             const { isValid: isFieldValid, value, name } = this.validateField(field)
 
