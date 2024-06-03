@@ -19,6 +19,7 @@ const api = async (url, options = {}) => {
             headers
         })
     ])
+    //console.log(result);
 
     const response = result[1]
     return await response.json()
