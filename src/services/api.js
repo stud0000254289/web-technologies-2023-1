@@ -5,24 +5,23 @@ const api = async (url, options = {}) => {
     const headers = {
         ...(options.headers || {}),
         "Content-Type": "application/json",
-    }
+    };
 
-    const token = Auth.token
+    const token = Auth.token;
     if (token) {
-        headers["Authorization"] = `Bearer ${token}`
+        headers["Authorization"] = `Bearer ${token}`;
     }
 
-    const result = await Promise.all([
-        await new Promise(resolve => setTimeout(() => resolve(), 200)),
-        await fetch(config.BASE_URL + url, {
-            ...options,
-            headers
-        })
-    ])
-    //console.log(result);
+    const response = await fetch(config.BASE_URL + url, {
+        ...options,
+        headers,
+    });
 
-    const response = result[1]
-    return await response.json()
-}
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
 
-export default api
+    return await response.json();
+};
+
+export default api;

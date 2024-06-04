@@ -1,41 +1,68 @@
-import AuthRepository from "../repository/auth.js";
-import api from "./api.js";
 import config from "./config.js";
-import location from "./location.js";
 
 class Auth {
-    static get token () {
-        return window.localStorage.getItem(config.AUTH_ACCESS_TOKEN)
+    constructor() {
+        this.token = localStorage.getItem(config.AUTH_ACCESS_TOKEN) || null;
     }
 
-    static set token (value) {
-        if (!value) {
-            window.localStorage.removeItem(config.AUTH_ACCESS_TOKEN)
+    async login(credentials) {
+        const response = await fetch(`${config.BASE_URL}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(credentials),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            this.token = data.token;
+            localStorage.setItem(config.AUTH_ACCESS_TOKEN, data.token);
+            return data;
         } else {
-            window.localStorage.setItem(config.AUTH_ACCESS_TOKEN, value)
+            throw new Error(data.message);
         }
     }
 
-    static async login (values) {
-        const response = await AuthRepository.login(values)
-        Auth.token = response.data.accessToken
-        location.user()
+    async reg(credentials) {
+        const response = await fetch(`${config.BASE_URL}/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(credentials),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        return data;
     }
 
-    static async reg (values) {
-        const response = await AuthRepository.reg(values)
-        Auth.token = response.data.accessToken
-        location.user()
-    }
+    async me() {
+        if (!this.token) {
+            return { ok: false };
+        }
 
-    static async me () {
-        return await AuthRepository.me()
-    }
+        const response = await fetch(`${config.BASE_URL}/me`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.token}`,
+            },
+        });
 
-    static async logout () {
-        Auth.token = ''
-        // return await AuthRepository.logout()
+        if (response.ok) {
+            const data = await response.json();
+            return { ok: true, data };
+        } else {
+            return { ok: false };
+        }
     }
 }
 
-export default Auth
+export default new Auth();

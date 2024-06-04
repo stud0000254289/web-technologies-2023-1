@@ -4,40 +4,46 @@ import location from "../services/location.js";
 import loading from "../services/loading.js";
 
 const init = async () => {
-    const { ok: isLogged } = await Auth.me()
+    const { ok: isLogged } = await Auth.me();
 
     if (isLogged) {
-        return location.user()
+        return location.user();
     } else {
-        loading.stop()
+        loading.stop();
     }
 
-    const formEl = document.getElementById('login-form')
+    const formEl = document.getElementById('login-form');
 
     new Form(formEl, {
         'email': (value) => {
             if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))) {
-                return 'Некорректный email'
+                return 'Некорректный email';
             }
 
-            return false
+            return false;
         },
         'password': (value) => {
             if (value.length < 6) {
-                return 'Значение должно быть больше или равно 6'
+                return 'Значение должно быть больше или равно 6';
             } else if (value.length >= 32) {
-                return 'Значение должно быть меньше 32'
+                return 'Значение должно быть меньше 32';
             }
 
-            return false
+            return false;
         }
-    }, (values) => {
-        Auth.login(values)
-    })
+    }, async (values) => {
+        try {
+            await Auth.login(values);
+            alert('Login successful');
+        } catch (e) {
+            console.error(e);
+            alert('Login failed');
+        }
+    });
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener("DOMContentLoaded", init)
+    document.addEventListener("DOMContentLoaded", init);
 } else {
-    init()
+    init();
 }
